@@ -164,11 +164,11 @@ function clone_reddit_service_repo {
     clone_reddit_repo $1 reddit-archive/reddit-service-$1
 }
 
-clone_reddit_repo reddit libertysoft3/saidit
-clone_reddit_repo i18n libertysoft3/reddit-i18n
+clone_reddit_repo reddit wezerl/saidit
+clone_reddit_repo i18n wezerl/reddit-i18n
 clone_reddit_service_repo websockets
 clone_reddit_service_repo activity
-clone_reddit_repo snudown libertysoft3/snudown
+clone_reddit_repo snudown wezerl/snudown
 
 ###############################################################################
 # Configure Services
