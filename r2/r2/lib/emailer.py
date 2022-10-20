@@ -27,7 +27,7 @@ from email.MIMEMultipart import MIMEMultipart
 from email.errors import HeaderParseError
 import datetime
 import traceback, sys
-from smtplib import SMTP_SSL as SMTP
+from smtplib import SMTP_SSL,SMTP
 
 from pylons import tmpl_context as c
 from pylons import app_globals as g
@@ -253,12 +253,19 @@ def send_queued_mail(test = False):
     now = datetime.datetime.now(g.tz)
     if not c.site:
         c.site = DefaultSR()
-
+    test= False
     clear = False
     if not test:
         session = SMTP(g.smtp_server, 587)
+
         
     def sendmail(email):
+        smtp_server = g.smtp_server
+        smtp_email = email.fr_addr
+        smtp_password = g.smtp_password
+        print(smtp_server)
+        print(smtp_email)
+        print(smtp_password)
         try:
             mimetext = email.to_MIMEText()
             if mimetext is None:
@@ -266,17 +273,20 @@ def send_queued_mail(test = False):
                        % (email.fr_addr, email.to_addr))
             if test:
                 print mimetext.as_string()
+                print(g.smtp_server)
             else:
-                try:
+                    session.starttls()
                     session.login(email.fr_addr, g.smtp_password)
                     session.sendmail(email.fr_addr, email.to_addr,
                                      mimetext.as_string())
                     email.set_sent(rejected = False)
-                finally:
-                        session.quit()
+                    session.quit()
+
+
         # exception happens only for local recipient that doesn't exist
-        except (SMTP.SMTPRecipientsRefused, SMTP.SMTPSenderRefused,
-                UnicodeDecodeError, AttributeError, HeaderParseError):
+        except:
+                #(SMTP_SSL.SMTPRecipientsRefused, SMTP_SSL.SMTPSenderRefused,
+                #UnicodeDecodeError, AttributeError, HeaderParseError):
             # handle error and print, but don't stall the rest of the queue
             print "Handled error sending mail (traceback to follow)"
             traceback.print_exc(file = sys.stdout)
@@ -311,10 +321,12 @@ def send_queued_mail(test = False):
                 email.set_sent(rejected = True)
                 continue
             sendmail(email)
+    except:
+        print("error")
 
-    finally:
-        if not test:
-            session.quit()
+    #finally:
+        #if not test:
+        #    session.quit()
 
     # clear is true if anything was found and processed above
     if clear:
@@ -422,7 +434,8 @@ def send_html_email(to_addr, from_addr, subject, html,
             filename=attachment['name'])
         msg.attach(part)
 
-    session = SMTP(g.smtp_server, 587)
+    session = SMTP(g.smtp_server, 465)
+
     session.login(from_addr, g.smtp_password)
     session.sendmail(from_addr, to_addr, msg.as_string())
     session.quit()
