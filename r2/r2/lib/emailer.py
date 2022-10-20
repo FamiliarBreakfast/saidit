@@ -260,12 +260,6 @@ def send_queued_mail(test = False):
 
         
     def sendmail(email):
-        smtp_server = g.smtp_server
-        smtp_email = email.fr_addr
-        smtp_password = g.smtp_password
-        print(smtp_server)
-        print(smtp_email)
-        print(smtp_password)
         try:
             mimetext = email.to_MIMEText()
             if mimetext is None:
