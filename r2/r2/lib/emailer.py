@@ -26,7 +26,8 @@ from email.MIMEText import MIMEText
 from email.MIMEMultipart import MIMEMultipart
 from email.errors import HeaderParseError
 import datetime
-import traceback, sys, smtplib
+import traceback, sys
+from smtplib import SMTP_SSL as SMTP
 
 from pylons import tmpl_context as c
 from pylons import app_globals as g
@@ -255,7 +256,8 @@ def send_queued_mail(test = False):
 
     clear = False
     if not test:
-        session = smtplib.SMTP(g.smtp_server)
+        session = SMTP(g.smtp_server, 587)
+        
     def sendmail(email):
         try:
             mimetext = email.to_MIMEText()
@@ -265,17 +267,21 @@ def send_queued_mail(test = False):
             if test:
                 print mimetext.as_string()
             else:
-                session.sendmail(email.fr_addr, email.to_addr,
-                                 mimetext.as_string())
-                email.set_sent(rejected = False)
+                try:
+                    session.login(email.fr_addr, g.smtp_password)
+                    session.sendmail(email.fr_addr, email.to_addr,
+                                     mimetext.as_string())
+                    email.set_sent(rejected = False)
+                finally:
+                        session.quit()
         # exception happens only for local recipient that doesn't exist
-        except (smtplib.SMTPRecipientsRefused, smtplib.SMTPSenderRefused,
+        except (SMTP.SMTPRecipientsRefused, SMTP.SMTPSenderRefused,
                 UnicodeDecodeError, AttributeError, HeaderParseError):
             # handle error and print, but don't stall the rest of the queue
             print "Handled error sending mail (traceback to follow)"
             traceback.print_exc(file = sys.stdout)
             email.set_sent(rejected = True)
-
+    
 
     try:
         for email in Email.get_unsent(now):
@@ -416,7 +422,8 @@ def send_html_email(to_addr, from_addr, subject, html,
             filename=attachment['name'])
         msg.attach(part)
 
-    session = smtplib.SMTP(g.smtp_server)
+    session = SMTP(g.smtp_server, 587)
+    session.login(from_addr, g.smtp_password)
     session.sendmail(from_addr, to_addr, msg.as_string())
     session.quit()
 
