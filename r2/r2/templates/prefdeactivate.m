@@ -26,7 +26,7 @@
 <%namespace file="utils.m" import="error_field, text_with_links"/>
 <%namespace name="utils" file="utils.m"/>
 
-<h1>${_("deactivate your saidit account")}</h1>
+<h1>${_("deactivate your account")}</h1>
 
 <form action="javascript:;" method="post"
   onsubmit="${"return post_form(this, 'deactivate_user', function(x) {return '%s'})" % jssafe(_("deactivating..."))}" id="pref-deactivate">
@@ -35,8 +35,8 @@
   <%utils:round_field title="${_('sorry to see you go!')}">
     <div class="rounded white-field">
       ${unsafe(safemarkdown(_(
- " * if you're having a problem on saidit, please consider messaging the admin /u/magnora7 about it before deactivating your account.\n"
-        " * deactivating your account will not delete the content of posts and comments you've made on saidit. to do so, please delete them individually."
+ " * if you're having a problem on Platform, please consider messaging the admins about it before deactivating your account.\n"
+        " * deactivating your account will not delete the content of posts and comments you've made. to do so, please delete them individually."
       )))}
     </div>
   </%utils:round_field>

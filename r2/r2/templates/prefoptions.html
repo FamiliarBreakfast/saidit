@@ -106,13 +106,13 @@
          name="${name}" value="${s if s is not None else ''}">
 </%def>
 
-## SaidIt: text_input with more params
+## Platform: text_input with more params
 <%def name="text_input_all(s, name, size, disabled)">
   <input type="text" class="text" size="${size}" maxlength="${size}"
          name="${name}" value="${s if s is not None else ''}" ${"disabled='disabled'" if disabled else ""} ${"style='width:auto'" if size and size > 20 else ""}>
 </%def>
 
-## SaidIt: site theme
+## Platform: site theme
 <%def name="site_theme_sort_options()">
   <% menu = SiteThemeMenu() %>
   <select name="site_theme">
@@ -125,7 +125,7 @@
   </select>
 </%def>
 
-## SaidIt: site index
+## Platform: site index
 <%def name="site_index_sort_options()">
   <% menu = SiteIndexMenu() %>
   <select name="site_index">
@@ -313,7 +313,7 @@
       &#32;
       ${_("the smaller the number, the faster your comments pages will load")}
     </span>
-## SaidIt: degolding, moved pref
+## Platform: degolding, moved pref
     <p>
       ${checkbox(_("highlight new comments"), "highlight_new_comments")}
     </p>
@@ -428,7 +428,7 @@
       &#32;
       <span class="details">
         (
-        <a href="https://www.saidit.net/wiki/noindex">${_("details")}</a>
+        <a href="https://subsimgpt2interactive.com/wiki/noindex">${_("details")}</a>
         )
       </span>
     </td>
@@ -525,7 +525,7 @@
     </td>
   </tr>
 
-## SaidIt: degolding
+## Platform: degolding
 ##  %elif c.user.is_moderator_somewhere:
 ##  <tr class="gold-accent">
 ##    <th>${_("experimental options")}</th>

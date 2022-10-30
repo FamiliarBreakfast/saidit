@@ -124,7 +124,7 @@
   </select>
 </%def>
 
-## SaidIt: site index
+## Platform: site index
 <%def name="site_index_sort_options()">
   <% menu = SiteIndexMenu() %>
   <select name="site_index">

@@ -162,7 +162,7 @@ def send_ban_message(subreddit, mod, user, note=None, days=None, new=True):
 
     message += "\n\n" + ("**Reminder from the %(site_name)s staff**: If you use "
         "another account to circumvent this sub ban, that will be "
-        "considered a violation of [the Content Policy](/s/SaidIt/comments/j1/the_saiditnet_terms_and_content_policy/) "
+        "considered a violation of [the Content Policy](/s/Headquarter/comments/46/terms_and_content_policy/) "
         "and can result in your account being suspended"
         "from the site as a whole.") % {"site_name": g.brander_site}
 
@@ -173,12 +173,12 @@ def send_ban_message(subreddit, mod, user, note=None, days=None, new=True):
 
 def send_suspension_message(user, admin, note=None, days=None, reason=None):
     if reason == None:
-        reason = "breaking saidit's sitewide rules"
+        reason = "breaking sitewide rules"
     subject = "Important notification about your account"
     if days:
-        message = ("Your account has been suspended from saidit for %(duration)s day(s) for %(reason)s.")
+        message = ("Your account has been suspended for %(duration)s day(s) for %(reason)s.")
     else:
-        message = "Your account has been permanently suspended from saidit for %(reason)s."
+        message = "Your account has been permanently suspended for %(reason)s."
 
     message %= {"reason": reason, "duration": days}
 
@@ -186,7 +186,7 @@ def send_suspension_message(user, admin, note=None, days=None, reason=None):
         message += "\n\n" + 'Note from the admins:'
         message += "\n\n" + blockquote_text(note)
 
-    message += "\n\n" + ("Make sure to review [the %(site_name)s Content Policy](/s/SaidIt/comments/j1/the_saiditnet_terms_and_content_policy/).") % {"site_name": g.brander_site}
+    message += "\n\n" + ("Make sure to review [the %(site_name)s Content Policy](/s/Headquarter/comments/46/terms_and_content_policy/).") % {"site_name": g.brander_site}
 
     messager = g.admin_message_acct
     from_sr = False

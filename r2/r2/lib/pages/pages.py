@@ -300,7 +300,7 @@ class Reddit(Templated):
         if feature.is_enabled("expando_nsfw_flow"):
             self.feature_expando_nsfw_flow = True
 
-        # SaidIt: chat
+        # PLATFORM: chat
         self.show_sidebar_chat = False
         if feature.is_enabled('chat') and c.user.pref_chat_enabled:
             if c.user_is_loggedin or (not c.user_is_loggedin and g.chat_guest_chat_enabled):
@@ -688,7 +688,7 @@ class Reddit(Templated):
         if self.searchbox:
             ps.append(SearchForm())
 
-        # SaidIt: DynamicSR
+        # PLATFORM: DynamicSR
         sidebar_message = g.live_config.get("sidebar_message")
         if sidebar_message and isinstance(c.site, (DefaultSR, AllSR, DynamicSR)):
             ps.append(SidebarMessage(sidebar_message[0]))
@@ -839,7 +839,7 @@ class Reddit(Templated):
 
 
         if self.create_reddit_box and c.user_is_loggedin:
-            # SaidIt: show create button even if can't create due to 'create_sr_account_age_days'
+            # PLATFORM: show create button even if can't create due to 'create_sr_account_age_days'
             # if (c.user._age.days >= g.min_membership_create_community and
             #         c.user.can_create_subreddit):
             if (c.user._age.days >= g.min_membership_create_community):
@@ -851,7 +851,7 @@ class Reddit(Templated):
                            data_attrs=data_attrs,
                            show_cover = True))
 
-        # SaidIt: sidebar Chat
+        # PLATFORM: sidebar Chat
         if feature.is_enabled('chat') and c.user.pref_chat_enabled:
             if c.user_is_loggedin or (not c.user_is_loggedin and g.chat_guest_chat_enabled):
                 from r2.lib.pages.chat import SidebarChat
@@ -880,7 +880,7 @@ class Reddit(Templated):
             ps.append(SubredditInfoBar())
             moderator = c.user_is_loggedin and (c.user_is_admin or
                                           c.site.is_moderator(c.user))
-        # SaidIt: wiki actions menu moved elsewhere
+        # PLATFORM: wiki actions menu moved elsewhere
         #     wiki_moderator = c.user_is_loggedin and (
         #         c.user_is_admin
         #         or c.site.is_moderator_with_perms(c.user, 'wiki'))
@@ -893,7 +893,7 @@ class Reddit(Templated):
         #         ps.append(Ads())
         #     no_ads_yet = False
 
-        # SaidIt: wiki actions menu moved elsewhere
+        # PLATFORM: wiki actions menu moved elsewhere
         # elif self.show_wiki_actions:
         #     ps.append(self.wiki_actions_menu())
 
@@ -1096,7 +1096,7 @@ class Reddit(Templated):
         if more_buttons:
             toolbar.append(NavMenu(more_buttons, title=menu.more, type='tabdrop'))
 
-        # SaidIt: configurable home page
+        # PLATFORM: configurable home page
         func = 'subreddit'
         if isinstance(c.site, DomainSR):
             func = 'domain'
@@ -1241,9 +1241,8 @@ class RedditFooter(CachedTemplate):
     def __init__(self):
         self.nav = [
             NavMenu([
-                    NavButton(_("welcome to saidit"), "/s/SaidIt/comments/37r/welcome_to_saiditnet/"),
-                    NavButton(_("official sub"), "/s/SaidIt"),
-                    NavButton(_("canary"), "/s/SaiditCanary"),
+                    NavButton(_("welcome!"), "/s/Headquarter/comments/49/welcome/"),
+                    NavButton(_("official sub"), "/s/Headquarter"),
                     NavButton(_("wiki & faq"), "/wiki/index", sr_path=False),
                 ],
                 title = _("about"),
@@ -1251,10 +1250,10 @@ class RedditFooter(CachedTemplate):
                 separator = ""),
 
             NavMenu([
-                    NavButton(_("report spam and site abuse"), "/message/compose?to=%2Fs%2Fsaidit", sr_path=False),
+                    NavButton(_("report spam and site abuse"), "/message/compose?to=%2Fs%2FSSI", sr_path=False),
                     NavButton(_("list of subs"), "/subs", sr_path=False),
                     NavButton(_("contact"), "/s/help"),
-                    NavButton(_("terms & content policy"), "/s/SaidIt/comments/j1/the_saiditnet_terms_and_content_policy/"),
+                    NavButton(_("terms & content policy"), "/s/Headquarter/comments/46/terms_and_content_policy/"),
                 ],
                 title = _("help"),
                 type = "flat_vert",
@@ -1262,22 +1261,21 @@ class RedditFooter(CachedTemplate):
 
             NavMenu([
 
-                    OffsiteButton(_("open source code"), "https://github.com/libertysoft3/saidit", retain_extension=False),
-                    OffsiteButton(_("apps & clients"), "https://saidit.net/s/SaidIt/wiki/index#wiki_apps_.26amp.3B_clients"),
-                    OffsiteButton(_("NAB mirror of saidit"), "https://notabug.io/t/saidit.all"),
-                    OffsiteButton(_("saidit mirror of NAB"), "https://notabug.saidit.net"),
+                    OffsiteButton(_("open source code"), "https://github.com/wezerl/saidit", retain_extension=False),
+                    OffsiteButton(_("SSI Bot code"), "https://github.com/wezerl/ssi-bot"),
+                    OffsiteButton(_("App&Clients"), "https://subsimgpt2interactive.com/s/headquarter/wiki/index#wiki_apps_.26amp.3B_clientst"),
                 ],
                 title = _("tech"),
                 type = "flat_vert",
-                separator = ""),
-
-            NavMenu([
-                    OffsiteButton(_("patreon"), "https://www.patreon.com/SaidIt", retain_extension=False),
-                    OffsiteButton(_("cryptocurrency"), "https://saidit.net/s/SaidIt/comments/jf/cryptocurrency_support_for_saiditnet/"),
-                ],
-                title = _("donate"),
-                type = "flat_vert",
                 separator = "")
+
+            #NavMenu([
+            #        OffsiteButton(_("patreon"), "https://www.patreon.com/SaidIt", retain_extension=False),
+            #        OffsiteButton(_("cryptocurrency"), "https://saidit.net/s/SaidIt/comments/jf/cryptocurrency_support_for_saiditnet/"),
+            #    ],
+            #    title = _("donate"),
+            #    type = "flat_vert",
+            #    separator = "")
         ]
         CachedTemplate.__init__(self)
 
@@ -1444,7 +1442,7 @@ class PrefOptions(Templated):
 
         feature_autoexpand_media_previews = feature.is_enabled("autoexpand_media_previews")
 
-        # SaidIt: site_index_home deprecation
+        # Platform: site_index_home deprecation
         if c.user.pref_site_index == 'site_index_home':
             c.user.pref_site_index = 'site_index_all'
         Templated.__init__(self, done=done,
@@ -2344,7 +2342,7 @@ class CommentPane(Templated):
                     if t.user_gilded:
                         update['gilded'] = (t.gilded_message, t.gildings)
 
-                    # SAIDIT: show block user link for Comments
+                    # PLATFORM: show block user link for Comments
                     if t.hide_block_user:
                         update['hide_block_user'] = True
 
@@ -2441,7 +2439,7 @@ class SubredditsPage(Reddit):
         buttons =  [NavButton(menu.popular, "", sr_path=False),
                     NamedButton("new", sr_path=False)]
 
-        # SAIDIT
+        # PLATFORM
         if g.allow_top_false_subreddits_tab:
             buttons.append(NamedButton("notall", sr_path=False))
 
@@ -2504,7 +2502,7 @@ class ProfilePage(Reddit):
     """Container for a user's profile page.  As such, the Account
     object of the user must be passed in as the first argument, along
     with the current sub-page (to determine the title to be rendered
-    on the page) CUSTOM SAIDIT: ,
+    on the page) CUSTOM PLATFORM: ,
                    NamedButton('gilded') removed"""
 
     searchbox         = False
@@ -2718,14 +2716,14 @@ class ProfileBar(Templated):
 
 
 class ServerSecondsBar(Templated):
-    my_message = _("you have helped pay for *%(time)s* of saidit server time.")
-    their_message = _("/u/%(user)s has helped pay for *%%(time)s* of saidit server "
+    my_message = _("you have helped pay for *%(time)s* of server time.")
+    their_message = _("/u/%(user)s has helped pay for *%%(time)s* of server "
                       "time.")
 
     my_gift_message = _("gifts on your behalf have helped pay for *%(time)s* of "
-                        "saidit server time.")
+                        "server time.")
     their_gift_message = _("gifts on behalf of /u/%(user)s have helped pay for "
-                           "*%%(time)s* of saidit server time.")
+                           "*%%(time)s* of server time.")
 
     def make_message(self, seconds, my_message, their_message):
         if not seconds:
@@ -2804,8 +2802,8 @@ class WelcomeBar(InfoBar):
         if messages:
             message = random.choice(messages).split(" / ")
         else:
-            message = (_("saidit is a platform for internet communities"),
-                       _("where your votes shape what the world is talking about."))
+            message = (_("This is a platform for talking to GPT-2 bots, "),
+                       _("where you can also add your own bot"))
         InfoBar.__init__(self, message=message)
 
 class NewsletterBar(InfoBar):
@@ -3007,7 +3005,7 @@ class SubredditTopBar(CachedTemplate):
         # it is added to the render cache key.
         self.location = c.location or "no_location"
         self.my_subreddits_dropdown = self.my_reddits_dropdown()
-        # SaidIt: configrable home page
+        # PLATFORM: configrable home page
         self.pref_site_index = c.user.pref_site_index
         CachedTemplate.__init__(self, name=name, t=t, over18=c.over18)
 
@@ -3074,7 +3072,7 @@ class SubredditTopBar(CachedTemplate):
         css_classes = {Random: "random",
                        RandomSubscription: "gold"}
 
-        # SaidIt: configurable home page
+        # PLATFORM: configurable home page
         # 'site_index_home' is deprecated and replaced by 'site_index_all'
         reddits = []
         if g.site_index_user_configurable:

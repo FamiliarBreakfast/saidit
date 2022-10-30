@@ -78,11 +78,11 @@ string_dict = dict(
     user_deactivated = _("your account has been deactivated, but we won't judge you for it."),
 
     oauth_login_msg = _(
-        "Log in or sign up to connect your saidit account with %(app)s."),
+        "Log in or sign up to connect your account with %(app)s."),
 
     legal = _("I understand and agree that registration on or use of this site constitutes agreement to its %(user_agreement)s and %(privacy_policy)s."),
 
-    friends = _('to view saidit with only submissions from your friends, use [/s/friends](%s)'),
+    friends = _('to view with only submissions from your friends, use [/s/friends](%s)'),
 
     sr_created = _('your sub has been created'),
 
@@ -103,7 +103,7 @@ string_dict = dict(
 
     permalink_title = _("%(author)s comments on %(title)s"),
     link_info_title = _("%(title)s : %(site)s"),
-    link_info_og_description = _("%(score)s points and %(num_comments)s comments so far on saidit"),
+    link_info_og_description = _("%(score)s points and %(num_comments)s comments so far"),
 
     submit_link = _("""You are submitting a link. The key to a successful submission is interesting content and a descriptive title."""),
     submit_text = _("""You are submitting a text-based post. Speak your mind. A title is required, but expanding further in the text field is not. Beginning your title with "vote up if" is violation of intergalactic law."""),
@@ -118,40 +118,40 @@ string_dict = dict(
     invalid_search_query = _("I couldn't understand your query, so I simplified it and searched for \"%(clean_query)s\" instead."),
     completely_invalid_search_query = _("I couldn't understand your search query. Please try again."),
     search_help = _("You may also want to check the [search help page](%(search_help)s) for more information."),
-    formatting_help_info = _('SaidIt uses a slightly-customized version of [Markdown](http://daringfireball.net/projects/markdown/syntax) for formatting. See below for some basics.'),
-    read_only_msg = _("SaidIt is in \"emergency read-only mode\" right now. :( You won't be able to log in. We're sorry and are working frantically to fix the problem."),
+    formatting_help_info = _('We uses a slightly-customized version of [Markdown](http://daringfireball.net/projects/markdown/syntax) for formatting. See below for some basics.'),
+    read_only_msg = _("We are in \"emergency read-only mode\" right now. :( You won't be able to log in. We're sorry and are working frantically to fix the problem."),
     heavy_load_msg = _("this page is temporarily in read-only mode due to heavy traffic."),
-    in_perma_timeout_msg = _("Your account has been permanently suspended from SaidIt"),
-    in_temp_timeout_msg = _("Your account has been suspended from SaidIt for %(days)s."),
-    gold_benefits_msg = "saidit gold is our premium membership program. It grants you access to [extra features](https://saidit.net/gold/about) to improve your saidit experience. It also makes you really quite dapper. If you have questions about your gold, please visit /s/goldbenefits.",
+    in_perma_timeout_msg = _("Your account has been permanently suspended"),
+    in_temp_timeout_msg = _("Your account has been suspended for %(days)s."),
+    gold_benefits_msg = "Gold is our premium membership program. It grants you access to [extra features](https://subsimgpt2interactive.com/gold/about) to improve your experience. It also makes you really quite dapper. If you have questions about your gold, please visit /s/goldbenefits.",
     lounge_msg = "Grab a drink and join us in /s/lounge, the super-secret members-only community that may or may not exist.",
     postcard_msg = _("You sent us a postcard! (Or something similar.) When we run out of room on our refrigerator, we might one day auction off the stuff that people sent in. Is it okay if we include your thing?"),
-    over_comment_limit = _("Sorry, the maximum number of comments is %(max)d. (However, if you subscribe to saidit gold, it goes up to %(goldmax)d.)"),
+    over_comment_limit = _("Sorry, the maximum number of comments is %(max)d. (However, if you subscribe to Gold, it goes up to %(goldmax)d.)"),
     over_comment_limit_gold = _("Sorry, the maximum number of comments is %d."),
-    youve_got_gold = "%(sender)s just gifted you %(amount)s of saidit gold!",
+    youve_got_gold = "%(sender)s just gifted you %(amount)s of Gold!",
     giftgold_note = "Here's a note that was included:\n\n----\n\n",
-    youve_been_gilded_comment = "%(sender)s liked [your comment](%(url)s) so much that they gilded it, giving you saidit gold.\n\n",
-    youve_been_gilded_link = "%(sender)s liked [your submission](%(url)s) so much that they gilded it, giving you saidit gold.\n\n",
+    youve_been_gilded_comment = "%(sender)s liked [your comment](%(url)s) so much that they gilded it, giving you Gold.\n\n",
+    youve_been_gilded_link = "%(sender)s liked [your submission](%(url)s) so much that they gilded it, giving you Gold.\n\n",
     respond_to_anonymous_gilder = "Want to say thanks to your mysterious benefactor? Reply to this message. You will find out their username if they choose to reply back.",
     unsupported_respond_to_gilder = "Sorry, replying directly to your mysterious benefactor is not yet supported for this gilding.",
     anonymous_gilder_warning = _("***WARNING: Responding to this message will reveal your username to the gildee.***\n\n"),
-    gold_claimed_code = _("Thanks for claiming a saidit gold code.\n\n"),
-    gold_summary_autorenew_monthly = _("You're about to set up an ongoing, autorenewing subscription to saidit gold for yourself (%(user)s). \n\nYou'll pay **%(price)s** for this, **monthly**. \n\n>This subscription will renew automatically each month until you cancel. You may cancel at any time. If you cancel, you will not be billed for any additional months of service, and service will continue until the end of the billing period. If you cancel, you will not receive a refund for any service already paid for. Receipts will be delivered via private message in your account."),
-    gold_summary_autorenew_yearly = _("You're about to set up an ongoing, autorenewing subscription to saidit gold for yourself (%(user)s). \n\nYou'll pay **%(price)s** for this, **yearly**. \n\n>This subscription will renew automatically each year until you cancel. You may cancel at any time. If you cancel, you will not be billed for any additional years of service, and service will continue until the end of the billing period. If you cancel, you will not receive a refund for any service already paid for. Receipts will be delivered via private message in your account."),
-    gold_summary_onetime = _("You're about to make a one-time purchase of %(amount)s of saidit gold for yourself (%(user)s). You'll pay a total of %(price)s for this."),
-    gold_summary_creddits = _("You're about to purchase %(amount)s. They work like gift certificates: each creddit you have will allow you to give one month of saidit gold to someone else. You'll pay a total of %(price)s for this."),
-    gold_summary_gift_code = _("You're about to purchase %(amount)s of saidit gold in the form of a gift code. The recipient (or you) will be able to claim the code to redeem that gold to their account. You'll pay a total of %(price)s for this."),
-    gold_summary_signed_gift = _("You're about to give %(amount)s of saidit gold to %(recipient)s, who will be told that it came from you. You'll pay a total of %(price)s for this."),
-    gold_summary_anonymous_gift = _("You're about to give %(amount)s of saidit gold to %(recipient)s. It will be an anonymous gift. You'll pay a total of %(price)s for this."),
-    gold_summary_gilding_comment = _("Want to say thanks to *%(recipient)s* for this comment? Give them a month of [saidit gold](/gold/about)."),
-    gold_summary_gilding_link = _("Want to say thanks to *%(recipient)s* for this submission? Give them a month of [saidit gold](/gold/about)."),
-    gold_summary_gilding_page_comment = _("You're about to give *%(recipient)s* a month of [saidit gold](/gold/about) for this comment:"),
-    gold_summary_gilding_page_link = _("You're about to give *%(recipient)s* a month of [saidit gold](/gold/about) for this submission:"),
+    gold_claimed_code = _("Thanks for claiming a Fold code.\n\n"),
+    gold_summary_autorenew_monthly = _("You're about to set up an ongoing, autorenewing subscription to Gold for yourself (%(user)s). \n\nYou'll pay **%(price)s** for this, **monthly**. \n\n>This subscription will renew automatically each month until you cancel. You may cancel at any time. If you cancel, you will not be billed for any additional months of service, and service will continue until the end of the billing period. If you cancel, you will not receive a refund for any service already paid for. Receipts will be delivered via private message in your account."),
+    gold_summary_autorenew_yearly = _("You're about to set up an ongoing, autorenewing subscription to Gold for yourself (%(user)s). \n\nYou'll pay **%(price)s** for this, **yearly**. \n\n>This subscription will renew automatically each year until you cancel. You may cancel at any time. If you cancel, you will not be billed for any additional years of service, and service will continue until the end of the billing period. If you cancel, you will not receive a refund for any service already paid for. Receipts will be delivered via private message in your account."),
+    gold_summary_onetime = _("You're about to make a one-time purchase of %(amount)s of Fold for yourself (%(user)s). You'll pay a total of %(price)s for this."),
+    gold_summary_creddits = _("You're about to purchase %(amount)s. They work like gift certificates: each creddit you have will allow you to give one month of Gold to someone else. You'll pay a total of %(price)s for this."),
+    gold_summary_gift_code = _("You're about to purchase %(amount)s of Gold in the form of a gift code. The recipient (or you) will be able to claim the code to redeem that gold to their account. You'll pay a total of %(price)s for this."),
+    gold_summary_signed_gift = _("You're about to give %(amount)s of Gold to %(recipient)s, who will be told that it came from you. You'll pay a total of %(price)s for this."),
+    gold_summary_anonymous_gift = _("You're about to give %(amount)s of Gold to %(recipient)s. It will be an anonymous gift. You'll pay a total of %(price)s for this."),
+    gold_summary_gilding_comment = _("Want to say thanks to *%(recipient)s* for this comment? Give them a month of [Gold](/gold/about)."),
+    gold_summary_gilding_link = _("Want to say thanks to *%(recipient)s* for this submission? Give them a month of [Gold](/gold/about)."),
+    gold_summary_gilding_page_comment = _("You're about to give *%(recipient)s* a month of [Gold](/gold/about) for this comment:"),
+    gold_summary_gilding_page_link = _("You're about to give *%(recipient)s* a month of [Gold](/gold/about) for this submission:"),
     gold_summary_gilding_page_footer = _("You'll pay a total of %(price)s for this."),
     archived_post_message = _("This is an archived post. You won't be able to vote or comment."),
     locked_post_message = _("This post is locked. You won't be able to comment."),
     account_activity_blurb = _("This page shows a history of recent activity on your account. If you notice unusual activity, you should change your password immediately. Location information is guessed from your computer's IP address and may be wildly wrong, especially for visits from mobile devices."),
-    your_current_ip_is = _("You are currently accessing SaidIt from this IP address: %(address)s."),
+    your_current_ip_is = _("You are currently accessing from this IP address: %(address)s."),
     account_activity_apps_blurb = _("""
 These apps are authorized to access your account. Signing out of all sessions
 will revoke access from all apps. You may also revoke access from individual
@@ -164,7 +164,7 @@ apps below.
     traffic_help_email = _("Questions? Email self serve support: %(email)s"),
 
     traffic_subreddit_explanation = _("""
-WARNING, THIS PAGE IS NON-OPERATIONAL ON SAIDIT. IT MAY BE FIXED SOMEDAY IF THERE IS DEMAND. Below are the traffic statistics for your sub. Each graph represents one of the following over the interval specified.
+WARNING, THIS PAGE IS NON-OPERATIONAL. IT MAY BE FIXED SOMEDAY IF THERE IS DEMAND. Below are the traffic statistics for your sub. Each graph represents one of the following over the interval specified.
 
 * **pageviews** are all hits to %(subreddit)s, including both listing pages and comment pages.
 * **uniques** are the total number of unique visitors (determined by a combination of their IP address and User Agent string) that generate the above pageviews. This is independent of whether or not they are signed in.
@@ -176,8 +176,8 @@ Note: there are a couple of places outside of your sub where someone can click "
     subscribed_multi = _("multisub of your subscriptions"),
     mod_multi = _("multisub of subs you moderate"),
 
-    r_all_description = _("/s/all displays content from all of SaidIt, including subs you aren't subscribed to. Some subs have chosen to exclude themselves from /s/all."),
-    r_all_minus_description = _("Displaying content from /s/all of saidit, except the following subs:"),
+    r_all_description = _("/s/all displays content from all of this Platform, including subs you aren't subscribed to. Some subs have chosen to exclude themselves from /s/all."),
+    r_all_minus_description = _("Displaying content from /s/all of this Platform, except the following subs:"),
     all_minus_gold_only = _('Filtering /s/all is a feature only available to [gold](/gold/about) subscribers. Displaying unfiltered results from /s/all.'),
 )
 

@@ -535,7 +535,7 @@ def add_sr(
         elif c.render_style == 'compact':
             u.set_extension('compact')
 
-        # SaidIt CUSTOM
+        # Platform CUSTOM
         elif c.render_style == g.extension_subdomain_mobile_v2_render_style:
             u.set_extension(g.extension_subdomain_mobile_v2_render_style)
 
@@ -609,7 +609,7 @@ def add_attr(attrs, kind, label=None, link=None, cssclass=None, symbol=None):
         priority = 4
         cssclass = 'admin'
         if not label:
-            label = _('saidit admin, speaking officially')
+            label = _('Admin, speaking officially')
     elif kind in ('X', '@'):
         priority = 5
         cssclass = 'gray'

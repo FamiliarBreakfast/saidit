@@ -383,7 +383,7 @@ class ApiController(RedditController):
         if from_sr and from_sr._spam:
             return
 
-        # SaidIt: globally banned users can only message admin_message_acct
+        # Platform: globally banned users can only message admin_message_acct
         if c.user.is_global_banned:
             if (to and not (isinstance(to, Subreddit) and
                     '/%s/%s' % (g.brander_community_abbr, to.name) == g.admin_message_acct)):
@@ -1852,7 +1852,7 @@ class ApiController(RedditController):
             and sr
             and sr.is_moderator_with_perms(c.user, 'mail'))
 
-        # SAIDIT: block user in comments and links
+        # Platform: block user in comments and links
         if g.block_user_show_comments and not is_modmail and isinstance(thing, Comment):
             is_modmail = True
         elif g.block_user_show_links and not is_modmail and isinstance(thing, Link):
@@ -2366,8 +2366,8 @@ class ApiController(RedditController):
 
         **Note: votes must be cast by humans.** That is, API clients proxying a
         human's action one-for-one are OK, but bots deciding how to vote on
-        content or amplifying a human's vote are not. See [the SaidIt
-        Content Policy](/s/SaidIt/comments/j1/the_saiditnet_terms_and_content_policy/)
+        content or amplifying a human's vote are not. See [the
+        Content Policy](/s/Headquarter/comments/46/terms_and_content_policy/)
         for more details on what constitutes vote cheating.
 
         """
@@ -2395,7 +2395,7 @@ class ApiController(RedditController):
         # Don't allow users in timeout to vote
         VNotInTimeout().run(target=thing)
 
-        # SaidIt: don't allow globally banned users to vote
+        # Platform: don't allow globally banned users to vote
         if c.user.is_global_banned:
             self.abort403()
 
@@ -5324,7 +5324,7 @@ class ApiController(RedditController):
         c.user._commit()
         jquery.refresh()
 
-    # SAIDIT: global/sitewide user bans
+    # global/sitewide user bans
     # TODO: form validation and error display is janky
     @validatedForm(VAdmin(),
                    VModhash(),
@@ -5380,7 +5380,7 @@ class ApiController(RedditController):
         cache_clear = GlobalBan._recent_global_bans_cache(_update=True)
         form.set_html(".status", _('deleted, <a href="#" onclick="location.reload();">reload</a> to see it'))
 
-    # SAIDIT: IP bans
+    # Platform: IP bans
     # TODO: validate is ip
     @validatedForm(VAdmin(),
                    VModhash(),
@@ -5429,7 +5429,7 @@ class ApiController(RedditController):
         cache_clear = IpBan._all_bans(_update=True)
         form.set_html(".status", _('deleted, <a href="#" onclick="location.reload();">reload</a> to see it'))
 
-    # SAIDIT: site theme
+    # Platform: site theme
     @csrf_exempt
     @validate(pref_lightswitch = VBoolean('lightswitch'))
     def POST_lightswitch(self, pref_lightswitch):
@@ -5440,7 +5440,7 @@ class ApiController(RedditController):
         set_prefs(c.user, prefs)
         c.user._commit()
 
-    # SAIDIT: mark all links and comments as spam unless approved
+    # Platform: mark all links and comments as spam unless approved
     @validatedForm(VAdmin(),
                    VModhash(),
                    recipient=VExistingUname("recipient"))

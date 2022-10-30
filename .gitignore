@@ -3,6 +3,7 @@
 *.pyc
 *.pyo
 .DS_Store
+*.psd
 
 # mako
 r2/data/

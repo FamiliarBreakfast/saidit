@@ -67,7 +67,7 @@
 
 <%def name="interstitial_buttons()">
   <div class="buttons">
-    <a href="/" class="c-btn c-btn-primary">${_("back to SaidIt")}</a>
+    <a href="/" class="c-btn c-btn-primary">${_("back to our Platform")}</a>
   </div>
 </%def>
 

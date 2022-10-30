@@ -152,7 +152,7 @@ $(function() {
   <a href="//${domain}/submit"
     onclick="window.location = '//${domain}/submit?url=' + encodeURIComponent(window.location); return false">
    <img src="//${g.static_domain}/spreddit${image}.gif"
-        alt="submit to SaidIt" border="0" />
+        alt="submit to the Platform" border="0" />
    </a>
 </%def>
 

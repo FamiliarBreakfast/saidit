@@ -61,7 +61,7 @@ class Vote(object):
         v: k for k, v in SERIALIZED_DIRECTIONS.iteritems()}
 
     def __init__(self, user, thing, direction, date, data=None, effects=None,
-            get_previous_vote=True, event_data=None, vote_direction=None):
+                 get_previous_vote=True, event_data=None, vote_direction=None):
         if not thing.is_votable:
             raise TypeError("Can't create vote on unvotable thing %s" % thing)
 
@@ -90,8 +90,8 @@ class Vote(object):
 
     def __eq__(self, other):
         return (self.user == other.user and
-            self.thing == other.thing and
-            self.direction == other.direction)
+                self.thing == other.thing and
+                self.direction == other.direction)
 
     def __ne__(self, other):
         return not self == other
@@ -134,13 +134,16 @@ class Vote(object):
     def is_upvote(self):
         # backward compatibility
         return self.vote_direction == self.DIRECTIONS.up or self.direction == self.DIRECTIONS.up
+
     @property
     def is_downvote(self):
         # backward compatibility
         return self.vote_direction == self.DIRECTIONS.down or self.direction == self.DIRECTIONS.down
+
     @property
     def is_unupvote(self):
         return self.vote_direction == self.DIRECTIONS.unup
+
     @property
     def is_undownvote(self):
         return self.vote_direction == self.DIRECTIONS.undown
@@ -149,12 +152,15 @@ class Vote(object):
     @property
     def is_ononvote(self):
         return self.direction == self.DIRECTIONS.onon
+
     @property
     def is_onoffvote(self):
         return self.direction == self.DIRECTIONS.onoff
+
     @property
     def is_offonvote(self):
         return self.direction == self.DIRECTIONS.offon
+
     @property
     def is_offoffvote(self):
         return self.direction == self.DIRECTIONS.offoff
@@ -174,7 +180,7 @@ class Vote(object):
         """How long after the thing was posted that the vote was cast."""
         if self.is_automatic_initial_vote:
             return timedelta(0)
-        
+
         return self.date - self.thing._date
 
     def apply_effects(self):
@@ -228,6 +234,7 @@ class Vote(object):
 
 class VoteEffects(object):
     """Contains details about how a vote affects the thing voted on."""
+
     def __init__(self, vote, effects=None):
         """Initialize a new set of vote effects.
 
@@ -504,7 +511,7 @@ class VoteDetailsByThing(tdb_cassandra.View):
             data["ip"] = ips.get(voter_id36)
 
             vote = Vote(user, thing, direction, date, data, effects,
-                get_previous_vote=False)
+                        get_previous_vote=False)
             details.append(vote)
         details.sort(key=lambda d: d.date)
 

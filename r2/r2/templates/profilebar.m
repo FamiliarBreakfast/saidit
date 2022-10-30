@@ -33,7 +33,7 @@
     %if thing.user.employee:
       <span class="user-distinction">
         [
-        <span class="admin" title="saidit admin">A</span>
+        <span class="admin" title="Admin">A</span>
         ]
       </span>
     %endif
@@ -124,7 +124,7 @@
     %endif
 
     <span class="age">
-      ${_("saiditter for")}&#32;${thing_timestamp(thing.user)}
+      ${_("User for")}&#32;${thing_timestamp(thing.user)}
     </span>
   </div>
 

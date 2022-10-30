@@ -57,7 +57,7 @@
     ##        ),
     ## )}.
     ## &copy; 
-    ${_("%(year)d SaidIt") % \
+    ${_("%(year)d") % \
     dict(year=datetime.datetime.now().timetuple()[0])}
 <br />
 <br />

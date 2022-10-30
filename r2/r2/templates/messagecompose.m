@@ -117,7 +117,7 @@ ${captcha_field()}
 
   <div class="clippy" ${"style='display:none'" if thing.to not in thing.admins else ""}>
      <div class="clippy-bubble">
-       <p class="clippy-headline">You're messaging a saidit admin!</p><br>
+       <p class="clippy-headline">You're messaging an Admin!</p><br>
        <p>
          Before you click "send", please make sure that
          &#32;
@@ -126,7 +126,7 @@ ${captcha_field()}
          is the right person for the job.
        </p><p> </p><br>
 
-       <p>If your inqury relates to a specific sub, please messeage the mods of that sub rather than a saidit admin.</p>
+       <p>If your inqury relates to a specific sub, please messeage the mods of that sub rather than an Admin.</p>
 
      </div>
     <br class="clear"/>

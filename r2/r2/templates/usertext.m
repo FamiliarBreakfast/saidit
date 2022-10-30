@@ -206,7 +206,7 @@
                         "helpon", "helpoff",
                          style = "" if thing.creating else "display: none")}
 
-        <a href="/s/SaidIt/comments/j1/the_saiditnet_terms_and_content_policy/" class="reddiquette" target="_blank" tabindex="100">${_('content policy')}</a>
+        <a href="/s/Headquarter/comments/46/terms_and_content_policy/" class="reddiquette" target="_blank" tabindex="100">${_('content policy')}</a>
 
         %if thing.include_errors:
           ${error_field("TOO_LONG", thing.name, "span")}

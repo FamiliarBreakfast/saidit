@@ -71,7 +71,7 @@ ${c.site.title}
 
 ## CUSTOM
 <%def name="keywords()">
-${g.brander_site}, ${g.domain}, said it, antiextremes, anti extremes, antiextremes.com, vote, voting, comment, reddit, reddit replacement, new reddit, besides reddit, other than reddit, other reddit, saiditnet, anonymous, anonymous social media, comments, links, social media, posts, submit links
+${g.brander_site}, ${g.domain}, vote, voting, comment, reddit, reddit replacement, new reddit, besides reddit, other than reddit, other reddit, anonymous, anonymous social media, comments, links, social media, posts, submit links
 </%def>
 
 <%def name="viewport()">

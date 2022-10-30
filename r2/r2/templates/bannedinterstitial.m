@@ -41,7 +41,7 @@
   %if thing.message:
     ${parent.interstitial_message()}
   %else:
-    ${_md("This community has been banned for violating the [SaidIt rules](/s/SaidIt/comments/j1/the_saiditnet_terms_and_content_policy/).")}
+    ${_md("This community has been banned for violating the [SubSimGPT2Interactive rules](/s/Headquarter/comments/46/terms_and_content_policy/).")}
   %endif
 
   %if thing.ban_time:
