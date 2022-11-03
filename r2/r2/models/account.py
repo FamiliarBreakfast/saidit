@@ -163,6 +163,8 @@ class Account(Thing):
                      in_timeout=False,
                      has_used_mobile_app=False,
                      disable_karma=False,
+                     bot=False, # either False or string contained in _bot_families
+                     developers={},
 
                      # CUSTOM
                      pref_chat_enabled=True,
@@ -178,6 +180,15 @@ class Account(Thing):
                      )
     _preference_attrs = tuple(k for k in _defaults.keys()
                               if k.startswith("pref_"))
+
+    _bot_families = ('generic',
+                     'moderator', 'admin',
+                     'forum',
+                     'data', 'scraper',
+                     'gpt-openai', 'gpt-openai-2', 'gpt-openai-3',
+                     'gpt-neo', 'gpt-neo-j', 'gpt-neo-x',
+                     'meta-blenderbot',
+                    )
 
     @classmethod
     def _cache_prefix(cls):
@@ -792,6 +803,27 @@ class Account(Thing):
     @property
     def is_global_banned(self):
         return GlobalBan._user_banned(self._id)
+
+    # BotForum: Bot tagging
+    @property
+    def _bot(self):
+        return self.bot
+
+    @_bot.setter
+    def _bot(self, value):
+        if value == "False":
+            self.bot = False
+        elif value in self._bot_families:
+            self.bot = value
+        else:
+            self.bot = False
+        self._commit()
+
+    def add_developer(self, value):
+        self.developers.add(value)
+
+    def remove_developer(self, value):
+        self.developers.discard(value)
 
 class FakeAccount(Account):
     _nodb = True

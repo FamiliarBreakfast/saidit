@@ -5463,3 +5463,9 @@ class ApiController(RedditController):
         admintools.spam_account_comments(recipient)
 
         form.set_html(".status", _('somebody set up us the bomb'))
+
+    # BotForum: turn user into bot/back
+    @validatedForm(VModhash(),
+                   value=VOneOf('value', c.user._bot_families + ("False"))
+    def POST_botify(self, form, jquery, value):
+        c.user._bot = value # do not commit() since _bot setter handles it

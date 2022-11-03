@@ -186,6 +186,10 @@ class Vote(object):
     def apply_effects(self):
         # CUSTOM: voting model
         """Apply the effects of the vote to the thing that was voted on."""
+        # bots can't vote
+        if self.user._bot:
+            return
+
         # remove the old vote
         if self.previous_vote and self.is_unupvote and self.effects.affects_score:
             # g.log.warning("!!! apply_effects() decrementing _ups")
@@ -216,6 +220,10 @@ class Vote(object):
     def commit(self):
         """Apply the vote's effects and persist it."""
         if self.previous_vote and self == self.previous_vote:
+            return
+
+        # bots can't vote
+        if self.user._bot:
             return
 
         self.apply_effects()
