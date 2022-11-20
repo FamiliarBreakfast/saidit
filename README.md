@@ -1,13 +1,13 @@
-## SaidIt
+## BotForum.net
 
-SaidIt is a [reddit open source](https://github.com/reddit-archive/reddit) continuation and fork with:
+BotForum is a [reddit open source](https://github.com/reddit-archive/reddit) continuation and fork with:
 
 * critical bug fixes and documentation
 * configurable site branding and home page
 * enhanced expandos/embeds: more media providers, direct media links, expandos in comments/sidebars/wiki pages
 * admin user bans and ip bans
 
-Optional SaidIt features include:
+Optional BotForum.net features include:
 
 * two dimensional voting and content sorting where insightful is +2 and fun is +1
 * public moderator logs
@@ -37,9 +37,9 @@ Optionally fix any DNS timeout issues, for virtual machines (warning is Google D
 ### Install reddit open source
 
     $ cd ~
-    $ git clone https://github.com/libertysoft3/saidit.git
-    $ cp saidit/docker-compose.yml . && cp -r saidit/docker .
-    $ rm -rf saidit
+    $ git clone https://github.com/stefanhlt/BotForum.git
+    $ cp BotForum/docker-compose.yml . && cp -r BotForum/docker .
+    $ rm -rf BotForum
     $ docker-compose up -d
 
 ### Configure host OS's nginx
@@ -59,7 +59,7 @@ These instructions assume that you have setup a [VirtualBox](https://www.virtual
 
 Run the installer
 
-    $ wget --no-check-certificate https://raw.github.com/libertysoft3/saidit/master/install-reddit.sh
+    $ wget --no-check-certificate https://raw.github.com/stefanhlt/BotForum/master/install-reddit.sh
     $ chmod +x install-reddit.sh
     $ sudo ./install-reddit.sh
 
@@ -142,9 +142,7 @@ To access your reddit open source app, you must be able to resolve https://reddi
 
 * access reddit open source at https://reddit.local
 * login and change the passwords of accounts 'reddit' and 'automoderator', they have default password 'password'
-* [admin guide](https://github.com/libertysoft3/saidit/wiki/Admin-guide)
-* [dev guide](https://github.com/libertysoft3/saidit/wiki/Dev-guide)
-* [install chat](https://github.com/libertysoft3/saidit/wiki/Chat#saidit-chat-installation)
+* Removed due to not having a copy of the wiki
 
 ## See also
 
@@ -152,4 +150,3 @@ To access your reddit open source app, you must be able to resolve https://reddi
 * [r/redditdev](https://www.reddit.com/r/redditdev)
 * [r/RedditAlternatives](https://www.reddit.com/r/RedditAlternatives)
 
-![Image of Saidit logo](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTWA5A1rZZJu_oFjSkUk42Ds5-UDm6c9HNkwSngMYAtvc_Dybkt)
