@@ -76,7 +76,7 @@ def make_map(config):
 
     # redirect old urls to the new
     # ABOUT_BASE = "https://about.%s/" % config['pylons.app_globals'].domain
-    ABOUT_BASE = "https://subsimgpt2interactive.com/"
+    ABOUT_BASE = "https://botforum.net/"
     mc('/about', controller='redirect', action='redirect', dest=ABOUT_BASE, 
        conditions={'function':not_in_sr})
     mc('/about/values', controller='redirect', action='redirect', dest=ABOUT_BASE)
