@@ -56,70 +56,66 @@ class AdminToolController(RedditController):
         admintools.set_ban_message(thing, system, message)
         form.refresh()
 
-    # CUSTOM: Shadowban
+    # Shadowban
     @noresponse(
         VAdmin(),
         VModhash(),
-        victim=VExistingUname("victim", allow_deleted=True),
+        recipient=VExistingUname("recipient"),
         reverse=VBoolean("reverse")
     )
-    def POST_ban_user(self, victim, reverse):
-        if victim == None:
+    def POST_ban_user(self, recipient, reverse):
+        if recipient == None:
             return
         if reverse:
-            victim._spam = False
-        # Don't ban admins
-        elif not victim.name in g.admins:
-            victim._spam = True
-        victim._commit()
+            recipient._spam = False
+        elif not recipient.name in g.admins:
+            recipient._spam = True
+        recipient._commit()
 
-    # CUSTOM: Ban account from logging in
+    # Prevent account from logging in at all
     @noresponse(
         VAdmin(),
         VModhash(),
-        victim=VExistingUname("victim", allow_deleted=True),
+        recipient=VExistingUname("recipient"),
         reverse=VBoolean("reverse")
     )
-    def POST_lock_user(self, victim, reverse):
-        if not g.admin_enable_password_locking and not c.user_is_superadmin:
-            return
-        if victim == None:
+    def POST_lock_user(self, recipient, reverse):
+        if recipient == None:
             return
         if reverse:
-            victim._banned = 0
-        # Don't ban admins
-        elif not victim.name in g.admins:
-            victim._banned = 1
+            recipient._banned = 0
+        elif not recipient.name in g.admins:
+            recipient._banned = 1
         # _commit() isn't necessary here, because setting _banned handles
         # everything
 
-    # CUSTOM: Suspension w/ notification
+    # Suspension w/ notification
     @validatedForm(
         VAdmin(),
         VModhash(),
-        victim=VExistingUname("victim", allow_deleted=True),
+        recipient=VExistingUname("recipient"),
         ban_reason=VLength('ban_reason', 100),
         duration=VInt('duration', min=1, max=999),
         ban_message=VMarkdownLength('ban_message', max_length=1000,
             empty_error=None)
     )
-    def POST_suspend_user(self, form, jquery, victim, ban_reason, duration, ban_message):
+    def POST_suspend_user(self, form, jquery, recipient, ban_reason, duration, ban_message):
         from datetime import datetime, timedelta
         from r2.models import bans
         from r2.lib.system_messages import send_suspension_message
         if form.has_errors("ban_reason", "ban_message", errors.TOO_LONG):
             return
-        if victim == None:
+        if recipient == None:
             return
-        if victim.name in g.admins:
+        if recipient.name in g.admins:
             return
-        victim.in_timeout = True
-        victim._commit()
-        if victim.timeout_expiration:
-            TempTimeout.unschedule(victim)
+        recipient.in_timeout = True
+        recipient._commit()
+        if recipient.timeout_expiration:
+            TempTimeout.unschedule(recipient)
         if duration:
-            TempTimeout.schedule(victim, timedelta(days=duration))
-        send_suspension_message(victim,
+            TempTimeout.schedule(recipient, timedelta(days=duration))
+        send_suspension_message(recipient,
                                 c.user,
                                 ban_message,
                                 duration,
@@ -127,34 +123,13 @@ class AdminToolController(RedditController):
     @noresponse(
         VAdmin(),
         VModhash(),
-        victim=VExistingUname("victim", allow_deleted=True)
+        recipient=VExistingUname("recipient")
     )
-    def POST_unsuspend_user(self, victim):
-        if victim == None:
+    def POST_unsuspend_user(self, recipient):
+        if recipient == None:
             return
-        victim.in_timeout = False
-        victim._commit()
-        if victim.timeout_expiration:
-            TempTimeout.unschedule(victim)
+        recipient.in_timeout = False
+        recipient._commit()
+        if recipient.timeout_expiration:
+            TempTimeout.unschedule(recipient)
 
-    # CUSTOM: "Spiderban"
-    @noresponse(
-        VAdmin(),
-        VModhash(),
-        victim=VExistingUname("victim", allow_deleted=True),
-        reverse=VBoolean("reverse")
-    )
-    def POST_spiderban_user(self, victim, reverse):
-        if victim == None:
-            return
-        # This blocks spiderbanning password locking without pw-locking
-        # permissions
-        if (not g.admin_enable_password_locking
-            and not c.user_is_superadmin
-            and victim._banned):
-            return
-        if reverse:
-            victim.spiderbanned = False
-        elif not victim.name in g.admins:
-            victim.spiderbanned = True
-        victim._commit()

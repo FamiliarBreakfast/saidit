@@ -6155,10 +6155,12 @@ class AdminIpBans(Templated):
 
 class AdminIpHistory(Templated):
     def __init__(self, user):
+        from r2.models import IpHistory
         Templated.__init__(self)
         self.user = user
+        self.iphistory = []
         if user:
-            self.iphistory = ips_by_account_id(user._id);
+            self.iphistory = IpHistory._ips_by_user(user);
 
 class AdminNukeContent(Templated):
     def __init__(self, recipient):

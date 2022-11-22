@@ -30,7 +30,6 @@ from r2.lib.filters import spaceCompress, _force_unicode
 from r2.lib.template_helpers import get_domain
 from r2.lib.utils import Agent
 from utils import string2js, read_http_date
-from r2.lib.db.thing import NotFound
 # CUSTOM
 from r2.models.ipban import IpBan
 
@@ -129,12 +128,8 @@ class BaseController(WSGIController):
             request.if_modified_since = None
 
         # CUSTOM: ip bans
-        try:
-            ipban = IpBan._by_ip(request.ip)
-            if ipban and ipban.level >= 4:
-                abort(403)
-        except NotFound:
-            pass
+        if request.ip in IpBan._all_banned_ips():
+            abort(403)
 
         self.fix_cookie_header()
         self.pre()
