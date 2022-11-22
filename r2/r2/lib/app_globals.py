@@ -136,19 +136,18 @@ PERMISSIONS = {
     "admin": "admin",
     "sponsor": "sponsor",
     "employee": "employee",
-    "superadmin": "superadmin",
 }
 
 
 class PermissionFilteredEmployeeList(object):
-    def __init__(self, config, types):
+    def __init__(self, config, type):
         self.config = config
-        self.types = types
+        self.type = type
 
     def __iter__(self):
         return (username
                 for username, permission in self.config["employees"].iteritems()
-                if permission in self.types)
+                if permission == self.type)
 
     def __getitem__(self, key):
         return list(self)[key]
@@ -296,7 +295,6 @@ class Globals(object):
             'admin_enable_ip_history',
             'admin_enable_ip_ban',
             'admin_enable_mass_content_removal',
-            'admin_enable_password_locking',
         ],
 
         ConfigValue.tuple: [
@@ -754,14 +752,12 @@ class Globals(object):
             self.secrets = extract_secrets(parser)
 
         ################# PRIVILEGED USERS
-        self.superadmins = PermissionFilteredEmployeeList(
-            self.live_config, types=("superadmin", ))
         self.admins = PermissionFilteredEmployeeList(
-            self.live_config, types=("admin", "superadmin"))
+            self.live_config, type="admin")
         self.sponsors = PermissionFilteredEmployeeList(
-            self.live_config, types=("sponsor", ))
+            self.live_config, type="sponsor")
         self.employees = PermissionFilteredEmployeeList(
-            self.live_config, types=("employee", ))
+            self.live_config, type="employee")
 
         # Store which OAuth clients employees may use, the keys are just for
         # readability.
