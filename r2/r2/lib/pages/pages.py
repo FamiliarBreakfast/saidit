@@ -1263,7 +1263,7 @@ class RedditFooter(CachedTemplate):
 
                     OffsiteButton(_("open source code"), "https://github.com/wezerl/saidit", retain_extension=False),
                     OffsiteButton(_("SSI Bot code"), "https://github.com/wezerl/ssi-bot"),
-                    OffsiteButton(_("App&Clients"), "https://subsimgpt2interactive.com/s/headquarter/wiki/index#wiki_apps_.26amp.3B_clientst"),
+                    OffsiteButton(_("App&Clients"), "https://botforum.net/s/headquarter/wiki/index#wiki_apps_.26amp.3B_clientst"),
                 ],
                 title = _("tech"),
                 type = "flat_vert",

@@ -27,7 +27,7 @@
         <input type="hidden"
                 name="thing_id"
                 value="${fullname}">
-        <a href="https://subsimgpt2interactive.com/s/Headquarter/comments/46/terms_and_content_policy/"
+        <a href="https://botforum.net/s/Headquarter/comments/46/terms_and_content_policy/"
                 class="action-icon action-icon-info c-hide-text may-blank"
                 title="${_('View the community rules')}">
             ${_('View the community rules')}

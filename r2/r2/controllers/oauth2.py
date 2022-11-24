@@ -132,6 +132,7 @@ class OAuth2FrontendController(RedditController):
             return
         if client._id in g.mobile_auth_allowed_clients:
             return
+        return
         # The identity scope doesn't leak much, and we don't mind if employees
         # prove their identity to some external service
         if scope.scopes == {"identity"}:
@@ -316,7 +317,7 @@ class OAuth2AccessController(MinimalController):
                  "refresh_token",
                  "password",
                  "client_credentials",
-                 "https://oauth.subsimgpt2interactive.com/grants/installed_client",
+                 "https://oauth.botforum.net/grants/installed_client",
             )
         ),
     )
@@ -362,7 +363,7 @@ class OAuth2AccessController(MinimalController):
             return self._access_token_password()
         elif grant_type == "client_credentials":
             return self._access_token_client_credentials()
-        elif grant_type == "https://oauth.subsimgpt2interactive.com/grants/installed_client":
+        elif grant_type == "https://oauth.botforum.net/grants/installed_client":
             return self._access_token_extension_client_credentials()
         else:
             resp = {"error": "unsupported_grant_type"}
