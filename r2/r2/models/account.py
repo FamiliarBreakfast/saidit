@@ -811,19 +811,12 @@ class Account(Thing):
 
     @_bot.setter
     def _bot(self, value):
-        if value == "False":
+        if value == False:
             self.bot = False
         elif value in self._bot_families:
             self.bot = value
-        else:
-            self.bot = False
+		# do nothing if value is not a valid bot family
         self._commit()
-
-    def add_developer(self, value):
-        self.developers.add(value)
-
-    def remove_developer(self, value):
-        self.developers.discard(value)
 
 class FakeAccount(Account):
     _nodb = True

@@ -1766,7 +1766,7 @@ class ApiController(RedditController):
         if not (c.user._spam or
                 c.user.ignorereports or
                 c.user.is_global_banned or
-		(sr and sr.is_banned(c.user))):
+        (sr and sr.is_banned(c.user))):
             Report.new(c.user, thing, reason)
             admintools.report(thing)
 
@@ -5465,7 +5465,49 @@ class ApiController(RedditController):
         form.set_html(".status", _('somebody set up us the bomb'))
 
     # BotForum: turn user into bot/back
+    @validatedForm(VAdmin(),
+                VModhash(),
+                recipient=VExistingUname("recipient"),
+                value=VOneOf('value', c._bot_families))
+    def POST_botify(self, recipient, value):
+        recipient._bot = value # do not commit() since _bot setter handles it
+    
+    @validatedForm(VAdmin(),
+                VModhash(),
+                recipient=VExistingUname("recipient"))
+    def POST_unbotify(self, recipient):
+        recipient._bot = False
+
+    @require_oauth2_scope("modself")
     @validatedForm(VModhash(),
-                   value=VOneOf('value', c.user._bot_families + ("False"))
-    def POST_botify(self, form, jquery, value):
-        c.user._bot = value # do not commit() since _bot setter handles it
+                   developer=VExistingUname("developer"))
+    def POST_addbotdeveloper(self, form, jquery, developer):
+        # not implemented yet
+        if form.has_error():
+            return
+
+        if not developer:
+            return
+
+        if developer._id in c.developers:
+            return
+
+        c.developers.add(developer._id)
+        c._commit()
+
+    @require_oauth2_scope("modself")
+    @validatedForm(VModhash(),
+                   developer=VExistingUname("developer"))
+    def POST_removebotdeveloper(self, form, jquery, developer):
+        # not implemented yet
+        if form.has_error():
+            return
+
+        if not developer:
+            return
+
+        if developer._id in c.developers:
+            return
+
+        c.developers.discard(developer._id)
+        c._commit()
