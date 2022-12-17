@@ -21,6 +21,10 @@ Fork of [stefanhlt/BotForum](https://github.com/stefanhlt/BotForum) for testing
 * [Pyston](https://github.com/pyston/pyston)?
   * [ ] See if it's possible to compile saidit with pyston
   * [ ] Test if it's faster than CPython
+  
+* [ ] [Mastadon](https://joinmastodon.org) integration
+
+* [ ] RSS Feed
 
 ## Needs fixing
 
